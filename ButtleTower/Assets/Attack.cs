@@ -27,10 +27,20 @@ public class Attack : MonoBehaviour {
 		{
 			// TODO change player health on hit
 			//here you would proceed with the death sequence, since i dont know what it is, i made a template with a debug statement
-			UnityEngine.Debug.Log("the player has died");
+			if(playerName.Equals("Player1"))//If Player1 Is being Attacked
+			{
+				gamestate.Instance.characters[0].takeDamage(gamestate.Instance.characters[1].attack);
+			}
+			else if(playerName.Equals("Player2"))//If Player2 Is being Attacked
+			{
+				gamestate.Instance.characters[1].takeDamage(gamestate.Instance.characters[0].attack);
+			}
+			//TODO add boss attak
+			//UnityEngine.Debug.Log("the player has died");
 			attacking = false;
 		}
 	}
+
 
 
 	void Update(){

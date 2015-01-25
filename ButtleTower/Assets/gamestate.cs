@@ -56,12 +56,13 @@ public class gamestate : MonoBehaviour {
 
 		//Initialize Scenes
 		stageNumber = 1;
-		puzzleStages = new List<string> () {"level1"};
-		BossStages = new List<string> () {"level2"};
+		puzzleStages = new List<string> () { "PuzzleScene1", "PuzzleScene1b", "PuzzleScene3" };
+		BossStages = new List<string> () { "gamestart" };
 
 		// Load level 1
 		//TODO change to initial scene
-		Application.LoadLevel("level1");
+		Application.LoadLevel("PuzzleScene1b");
+		//loadNextScene ();
 	}
 
 	public bool gameover(){
@@ -69,7 +70,6 @@ public class gamestate : MonoBehaviour {
 			if(player != null && !player.isDead){
 				return false;
 			}
-			return true;
 		}
 		return true;
 	}

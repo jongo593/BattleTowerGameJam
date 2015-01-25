@@ -13,7 +13,7 @@ public class changeOnCollisionScene : MonoBehaviour {
 	{    
 		Debug.Log ("OnTriggerEnter : other.tag = " + other.tag); // shows the tag of the trigger
 		// if tag is door
-		if (other.tag == "Player")
+		if (other.tag == "Player1")
 		{
 			gamestate.Instance.loadNextScene();
 			//TODO add item + stats to player.

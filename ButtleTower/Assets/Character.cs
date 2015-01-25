@@ -16,7 +16,10 @@ public class Character {
 	{
 		get { return (health <= 0); }
 	}
-
+	public int attack
+	{
+		get { return weapon != null? weapon.attack : 25; }//TODO set initial value;
+	}
 	public void takeDamage(int amount)
 	{
 		damageTaken += amount;
