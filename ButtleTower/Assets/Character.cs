@@ -6,6 +6,7 @@ public class Character {
 	public int initHealth = 100;
 	public int armor = 0;
 	public int damageTaken = 0;
+	public bool isAttacking = false;
 	public int health
 	{
 		get{ return (initHealth + armor*50) - damageTaken;}
