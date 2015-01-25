@@ -11,6 +11,12 @@ public class Character {
 	{
 		get{ return (initHealth + armor*50) - damageTaken;}
 	}
+
+	public int maxHP
+	{
+		get {return (initHealth + armor*50);}
+	}
+
 	public bool inv = false;
 	public Weapon weapon = null;
 	public bool isDead
