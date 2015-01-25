@@ -11,6 +11,7 @@ public class Character {
 	{
 		get{ return (initHealth + armor*50) - damageTaken;}
 	}
+	public int unarmed = 25;
 
 	public int maxHP
 	{
@@ -18,14 +19,15 @@ public class Character {
 	}
 
 	public bool inv = false;
-	public Weapon weapon = null;
+	//public Weapon weapon = null;
 	public bool isDead
 	{
 		get { return (health <= 0); }
 	}
+	public int weapon = 0;
 	public int attack
 	{
-		get { return weapon != null? weapon.attack : 25; }//TODO set initial value;
+		get { return unarmed + ( weapon * unarmed); }//TODO set initial value;
 	}
 	public void takeDamage(int amount)
 	{
@@ -33,7 +35,7 @@ public class Character {
 	}
 	public void attackChracter (Character opponent)
 	{
-		opponent.takeDamage (weapon.attack);
+		opponent.takeDamage (attack);
 	}
 
 

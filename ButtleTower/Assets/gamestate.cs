@@ -13,6 +13,7 @@ public class gamestate : MonoBehaviour {
 	public Character[] characters;
 	public List<string> puzzleStages;
 	public List<string> BossStages;
+	public Boss boss;
 	// ---------------------------------------------------------------------------------------------------
 	// gamestate()
 	// --------------------------------------------------------------------------------------------------- 
@@ -57,11 +58,15 @@ public class gamestate : MonoBehaviour {
 		//Initialize Scenes
 		stageNumber = 1;
 		puzzleStages = new List<string> () { "PuzzleScene1", "PuzzleScene1b", "PuzzleScene3" };
-		BossStages = new List<string> () { "gamestart" };
+		BossStages = new List<string> () { "ArenaScene1" };
 
 		// Load level 1
 		//TODO change to initial scene
-		Application.LoadLevel("PuzzleScene1b");
+		if (boss == null)
+		{
+			boss = new Boss(0, 50);
+		}
+		Application.LoadLevel("ArenaScene1");
 		//loadNextScene ();
 	}
 
@@ -76,10 +81,12 @@ public class gamestate : MonoBehaviour {
 
 	public void Update(){
 		if (gameover ()) {
-			Application.LoadLevel("endgame");
+			//Application.LoadLevel("endgame");
 			return;
 		}
-		return;
+		if (isBossStage && boss != null && boss.isDead) {
+			loadNextScene();
+		}
 	}
 
 	// ---------------------------------------------------------------------------------------------------
@@ -131,6 +138,10 @@ public class gamestate : MonoBehaviour {
 	public void loadNextScene()
 	{
 		if (isBossStage && BossStages.Count() > 0){
+			if(boss != null)
+			{
+				boss = new Boss(boss.armor+2, boss.attack * 2);
+			}
 			string nextStage = BossStages.OrderBy(a => Guid.NewGuid()).FirstOrDefault();
 			/*int index = System.Random.Next(BossStages.Count);
 			String nextStage = BossStages[index];*/
